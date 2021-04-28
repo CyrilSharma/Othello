@@ -1,1 +1,1 @@
-// Hummus is pretty good
+// Hummus is pretty trash
