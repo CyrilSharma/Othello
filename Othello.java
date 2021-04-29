@@ -1,3 +1,5 @@
+// DIVISION OF LABOR
+// -- This will be mostly written by Cyril and Sophiathe
 public class Othello {
     /**
      * This class handles all the game mechanics in Othello.
@@ -9,6 +11,7 @@ public class Othello {
      * player: a token to keep track of who's turn it is
     **/
 
+    // Board is 8 by 8
     private int[][] board = new int[8][8];
     private int[][] game_history = new int[8][8];
     private int player = 1;
@@ -28,6 +31,7 @@ public class Othello {
     }
 
     void move(int action) {
+        // 
         // advances the game state by the appropiate action, assuming the action is legal
         return;
     }
