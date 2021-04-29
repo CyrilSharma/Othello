@@ -36,7 +36,7 @@ public class Othello {
         return;
     }
 
-    void unmove() {
+    void unmove() { //Sophia Lu
         // regresses the game state by the appropiate action, assuming the action was legal
         return;
     }
