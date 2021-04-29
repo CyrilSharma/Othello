@@ -4,7 +4,7 @@ import java.awt.event.*;
 public class Panel extends JPanel
 {
    /**
-    * This class displays and handles events within the entire GUI, complete with the board and button interactions
+    * This class displays and handles events within the entire GUI, complete with the board, titlescreen and button interactions
     * 
     * PRIVATE VARIABLES
     * 
@@ -15,6 +15,7 @@ public class Panel extends JPanel
     */
 
    private Display display;
+   private TitleScreen titleScreen;
    private Tournament tournament;
    private JLabel title;
 
@@ -25,6 +26,7 @@ public class Panel extends JPanel
       tournament = new Tournament(1);
 
    }
+
    private class ForwardButtonListener implements ActionListener // Cyril Sharma
    {
       // This will advance the game state by one move when the button is clicked, but will only advance the gamestate to previous moves
