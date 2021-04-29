@@ -19,11 +19,13 @@ public class Tournament {
     }
 
     int bestOf(int a)   {
-        return;     //check the number of games the player needs to win
+        //check the number of games the player needs to win
+        return;     
     }
 
     boolean winner(int player)  {
-        return false;     //check if the player has reached the number of games to win
+        //check if the player has reached the number of games to win
+        return false;     
     }
 
 }
