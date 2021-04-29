@@ -1,7 +1,6 @@
-public class Tournament()   {
-    /*
-    This class handles the tournament system in Othello.
-
+public class Tournament {
+    /** 
+    * This class handles the tournament system in Othello.
     */
 
     Player one = new Player();
