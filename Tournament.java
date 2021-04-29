@@ -4,26 +4,29 @@ public class Tournament()   {
 
     */
 
-    private int player1 = 1; 
-    private int player2 = 2;
+    Player one = new Player();
+    Player two = new Player();
 
-    int discCount(int player) {
-        return;
+    int discCount(Player a) {
+        // returns the amount of discs a player has captured
+        return ;
     }
 
-    int winCount(int player)  {
-        return;
+    int winCount(Player a)  {
+        // returns the amount of wins of a player
+        return ;
     }
 
-    int gameCount() {
-        return;
+    int setGameCount(int b) {
+        // updates the number of games played
+        return games_played;
     }
 
-    int bestOf(int a)   {
-        return;     //check the number of games the player needs to win
+    int bestOf(int b)   {
+        return b;     //check the number of games the player needs to win
     }
 
-    boolean winner(int player)  {
+    boolean winner(Player a)  {
         return false;     //check if the player has reached the number of games to win
     }
 
