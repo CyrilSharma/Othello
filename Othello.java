@@ -20,12 +20,12 @@ public class Othello {
 
     }
 
-    boolean is_win(int action) {
+    boolean is_win(int action) { // Raka Adakroy
         // determines from the last action whether the game has been won or not
         return false;
     }
 
-    boolean is_draw() {
+    boolean is_draw() { // Raka Adakroy
         // determines whether the game is drawn
         return false;
     }

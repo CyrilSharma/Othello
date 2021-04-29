@@ -18,7 +18,7 @@ public class TitleScreen extends JPanel
 
     }
 
-    private class StartListener implements ActionListener // Cyril Sharma
+    private class StartListener implements ActionListener // Raka Adakroy
     {
         // This will initiate the game when the start button is clicked
         public void actionPerformed(ActionEvent e)
@@ -27,7 +27,7 @@ public class TitleScreen extends JPanel
         }
     }
 
-    private class RuleListener implements ActionListener // Sophia Lu
+    private class RuleListener implements ActionListener // Raka Adakrooy
     {
         // This will open the rules for the game
         public void actionPerformed(ActionEvent e)
