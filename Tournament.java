@@ -7,8 +7,8 @@ public class Tournament {
 
     private float[] p_scores = {0,0};
 
-    Tournament(int round_num) {
-        rounds = round_num;
+    public Tournament(int round_num) {
+        this.rounds = round_num;
     }
 
     float getScore(int player)  {

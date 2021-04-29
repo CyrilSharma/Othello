@@ -20,6 +20,9 @@ public class Panel extends JPanel
 
    public Panel()
    {
+      // get tournament size from user then set number of torunament rounds to that number
+      // using 1 as a dummy value
+      tournament = new Tournament(1);
 
    }
    private class ForwardButtonListener implements ActionListener
