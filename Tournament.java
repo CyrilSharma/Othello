@@ -3,30 +3,22 @@ public class Tournament {
     * This class handles the tournament system in Othello.
     */
 
-    Player one = new Player();
-    Player two = new Player();
+    private int rounds;
 
-    int discCount(Player a) {
-        // returns the amount of discs a player has captured
-        return ;
+    private float[] p_scores = {0,0};
+
+    Tournament(int round_num) {
+        rounds = round_num;
     }
 
-    int winCount(Player a)  {
+    float getScore(int player)  {
         // returns the amount of wins of a player
-        return ;
+        return p_scores[player];
     }
 
-    int setGameCount(int b) {
-        // updates the number of games played
-        return games_played;
+    int winner()  {
+        // check if the tournament is over, and if so return who won
+        // 0 means nobody won
+        return 0;
     }
-
-    int bestOf(int b)   {
-        return b;     //check the number of games the player needs to win
-    }
-
-    boolean winner(Player a)  {
-        return false;     //check if the player has reached the number of games to win
-    }
-
 }
