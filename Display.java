@@ -25,7 +25,7 @@ public class Display extends JPanel
     return;
    }
 
-   private void reset() {
+   private void reset() {   //Sophia Lu 
     // when the game is over, call this method if the player wishes to proceed to a new game
     return;
  }
