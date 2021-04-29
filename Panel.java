@@ -33,7 +33,7 @@ public class Panel extends JPanel
          return;
       }
    }
-   private class BackButtonListener implements ActionListener  //Sophia Lu 
+   private class BackButtonListener implements ActionListener  // Sophia Lu 
    {
       // This will regress the game state by one move when the button is clicked
       public void actionPerformed(ActionEvent e)
