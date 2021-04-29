@@ -9,9 +9,13 @@ public class Panel extends JPanel
     * PRIVATE VARIABLES
     * 
     * display: class that handles solely the display of the board itself.
+    * tournament: class that handles the winner of a sequence of repeated matches, also makes sure players get to be players 1 and 2 an even amount of times.
+
     * title: the title of the game
     */
+
    private Display display;
+   private Tournament tournament;
    private JLabel title;
 
    public Panel()
