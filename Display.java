@@ -1,4 +1,3 @@
-//Name______________________________ Date_____________
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,6 +5,7 @@ import java.awt.event.*;
 public class Display extends JPanel
 {
    private Othello game;
+
    public Display()
    {
 
@@ -14,12 +14,11 @@ public class Display extends JPanel
    {
     return;
    }
-
-   private class Listener1 implements ActionListener
+   private class Listener implements ActionListener
    {
       public void actionPerformed(ActionEvent e)
       {
-          
+
       }
    }
 }
