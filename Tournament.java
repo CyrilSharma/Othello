@@ -24,7 +24,7 @@ public class Tournament()   {
     }
 
     boolean winner(int player)  {
-        return;     //check if the player has reached the number of games to win
+        return false;     //check if the player has reached the number of games to win
     }
 
 }
