@@ -25,7 +25,7 @@ public class Panel extends JPanel
       tournament = new Tournament(1);
 
    }
-   private class ForwardButtonListener implements ActionListener
+   private class ForwardButtonListener implements ActionListener // Cyril Sharma
    {
       // This will advance the game state by one move when the button is clicked, but will only advance the gamestate to previous moves
       public void actionPerformed(ActionEvent e)
