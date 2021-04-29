@@ -30,7 +30,7 @@ public class Othello {
         return false;
     }
 
-    void move(int action) {
+    void move(int action) { // Cyril Sharma
         // 
         // advances the game state by the appropiate action, assuming the action is legal
         return;
@@ -42,7 +42,7 @@ public class Othello {
     }
 
 
-    boolean[][] legal() {
+    boolean[][] legal() { // Cyril Sharma
         // crafts an array of arrays, where true corresponds to an action being legal, and false corresponds to an illegal action
 
         // dummy variable to make code compile
