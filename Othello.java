@@ -1,10 +1,12 @@
 public class Othello {
     /**
      * This class handles all the game mechanics in Othello.
+     * 
      * PRIVATE VARIABLES
-     * board is an array which keeps track of the state by storing 1 for player 1, -1 for player 2, and 0 for no player at each point on the board
-     * game_history stores all the moves taken in the game, each specified by two coordinates (ex. (1, 0))
-     * player is a token to keep track of who's turn it is
+     * 
+     * board: an array which keeps track of the 2d board state by storing 1 for player 1, -1 for player 2, and 0 for no player at each point on the board
+     * game_history: an array which stores all the moves taken in the game, each specified by two coordinates (ex. (1, 0))
+     * player: a token to keep track of who's turn it is
     **/
 
     private int[][] board = new int[8][8];
