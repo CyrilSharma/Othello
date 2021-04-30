@@ -1,5 +1,6 @@
 // DIVISION OF LABOR
 // -- This will be mostly written by Cyril and Sophiathe
+//test
 public class Othello {
     /**
      * This class handles all the game mechanics in Othello.
