@@ -16,8 +16,14 @@ public class Othello {
     private int[][] game_history = new int[8][8];
     private int player = 1;
 
-    Othello() {
-
+    public Othello() {
+        int color = 1;
+        for (int i = 3; i < 5; i++){
+            for (int j = 3; j < 5; j++) {
+                board[i][j] = color;
+                color *= -1;
+            }
+        }
     }
 
     boolean is_win(int action) { // Raka Adakroy
