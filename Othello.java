@@ -95,7 +95,7 @@ public class Othello {
             }
             else {
                 // the opponent does not enclose the opponents pieces
-                board[i][j] = player;
+                board[row][col] = player;
                 return;
             }
         }
