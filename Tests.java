@@ -7,8 +7,12 @@ public class Tests {
     public static void Test_Move()
     {
         Othello board = new Othello();
-        int[] move = {0,0};
+        int[] move = {2,3};
         board.move(move);
+        board.display();
+
+        int[] move1 = {2,4};
+        board.move(move1);
         board.display();
     }
 }

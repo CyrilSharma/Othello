@@ -20,8 +20,8 @@ public class Othello {
         int color = 1;
         for (int i = 3; i < 5; i++){
             for (int j = 3; j < 5; j++) {
-                board[i][j] = color;
-                color *= -1;
+                // generate a checkerboard pattern (1 being white, -1 being blue)
+                board[i][j] = (((i + j) % 2) * 2) - 1;
             }
         }
     }
@@ -48,11 +48,13 @@ public class Othello {
     }
 
     void move(int[] action) { // Cyril Sharma
-        for (int i = -1; i < 1; i++){
-            for (int j = -1; j < 1; j++) {
+        for (int i = -1; i < 2; i++){
+            for (int j = -1; j < 2; j++) {
                 flip_section(action[0], action[1], i, j);
             }
         }
+        board[action[0]][action[1]] = player;
+        player *= -1;
         // 
         // advances the game state by the appropiate action, assuming the action is legal
         return;
@@ -68,7 +70,7 @@ public class Othello {
         else if (current_row == board.length || current_row == -1)
             return;
 
-        if (board[current_row][current_col] != player)
+        if (board[current_row][current_col] != player * -1)
             return;
         else {
             // tracks if consecutive pieces have the same color
@@ -87,16 +89,11 @@ public class Othello {
             // if the player encloses the opponents pieces with this move
             if (board[current_row][current_col] == player) {
                 // flip the appropiate pieces
-                for (int i = row; i < current_row; i += delta_row){
-                    for (int j = col; j < current_col; j += delta_col) {
-                        board[i][j] = player;
-                    }
+                while (!(row == current_row & col == current_col)) {
+                    row += delta_row;
+                    col += delta_col;
+                    board[row][col] = player;
                 }
-            }
-            else {
-                // the opponent does not enclose the opponents pieces
-                board[row][col] = player;
-                return;
             }
         }
     }
@@ -134,5 +131,6 @@ public class Othello {
             }
             System.out.println("");
         }
+        System.out.println("");
     }
 }
