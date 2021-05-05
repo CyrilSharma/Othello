@@ -37,9 +37,41 @@ public class Othello {
     }
 
     void move(int action) { // Cyril Sharma
+        for 
         // 
         // advances the game state by the appropiate action, assuming the action is legal
         return;
+    }
+
+    void flip_section(int row, int col, int delta_row, int delta_col) {
+        int current_row = row + delta_row;
+        int current_col = col + delta_col;
+
+        if (board[current_row][current_col] != player)
+            return;
+        else {
+            // tracks if consecutive pieces have the same color
+            boolean matches = true;
+            while (matches) {
+                current_row += delta_row;
+                current_col += delta_col;
+                matches = board[current_row][current_col] == player * -1;
+            }
+            // if the player encloses the opponents pieces with this move
+            if (board[current_row][current_col] == player) {
+                // flip the appropiate pieces
+                for (int i = row; i < current_row; i += delta_row){
+                    for (int j = col; j < current_col; j += delta_col) {
+                        board[i][j] = player;
+                    }
+                }
+            }
+            else {
+                // the opponent does not enclose the opponents pieces
+                board[i][j] = player;
+                return;
+            }
+        }
     }
 
     void unmove() { //Sophia Lu
