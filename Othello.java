@@ -114,4 +114,25 @@ public class Othello {
         boolean[][] dummy = new boolean[1][1];
         return dummy;
     }
+
+    void display() {
+        String RED = "\033[0;31m";     // RED
+        String BLUE = "\033[0;34m";    // BLUE
+        String RESET = "\033[0m";
+
+        for (int i = 0; i < board.length; i++){
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] == 1) {
+                    System.out.print(RED + "H " + RESET);
+                }
+                else if (board[i][j] == -1) {
+                    System.out.print(BLUE + "H " + RESET);
+                }
+                else {
+                    System.out.print("H ");
+                }
+            }
+            System.out.println("");
+        }
+    }
 }
