@@ -26,7 +26,7 @@ public class Othello {
         }
     }
 
-    boolean is_win(int action) { // Raka Adakroy
+    boolean is_win(int[] action) { // Raka Adakroy
         // determines from the last action whether the game has been won or not
         int count = 0;
         for (int i = 0; i<8; i++) {
@@ -47,10 +47,58 @@ public class Othello {
         return false;
     }
 
-    void move(int action) { // Cyril Sharma
+    void move(int[] action) { // Cyril Sharma
+        for (int i = -1; i < 1; i++){
+            for (int j = -1; j < 1; j++) {
+                flip_section(action[0], action[1], i, j);
+            }
+        }
         // 
         // advances the game state by the appropiate action, assuming the action is legal
         return;
+    }
+
+    void flip_section(int row, int col, int delta_row, int delta_col) {
+        int current_row = row + delta_row;
+        int current_col = col + delta_col;
+        
+        // make sure path isn't on the edge
+        if (current_col == board.length || current_col == -1)
+            return;
+        else if (current_row == board.length || current_row == -1)
+            return;
+
+        if (board[current_row][current_col] != player)
+            return;
+        else {
+            // tracks if consecutive pieces have the same color
+            boolean matches = true;
+            while (matches) {
+                current_row += delta_row;
+                current_col += delta_col;
+
+                if (current_col == board.length || current_col == -1)
+                    return;
+                else if (current_row == board.length || current_row == -1)
+                    return;
+                else
+                    matches = board[current_row][current_col] == player * -1;
+            }
+            // if the player encloses the opponents pieces with this move
+            if (board[current_row][current_col] == player) {
+                // flip the appropiate pieces
+                for (int i = row; i < current_row; i += delta_row){
+                    for (int j = col; j < current_col; j += delta_col) {
+                        board[i][j] = player;
+                    }
+                }
+            }
+            else {
+                // the opponent does not enclose the opponents pieces
+                board[i][j] = player;
+                return;
+            }
+        }
     }
 
     void unmove() { //Sophia Lu
