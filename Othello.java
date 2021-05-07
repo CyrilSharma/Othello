@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 // DIVISION OF LABOR
 // -- This will be mostly written by Cyril and Sophiathe
 public class Othello {
@@ -7,17 +9,16 @@ public class Othello {
      * PRIVATE VARIABLES
      * 
      * board: an array which keeps track of the 2d board state by storing 1 for player 1, -1 for player 2, and 0 for no player at each point on the board
-     * game_history: an array which stores all the moves taken in the game, each specified by two coordinates (ex. (1, 0))
+     * game_history: an array which stores all the game states that have occurred throughout the game, each specified by an array of arrays
      * player: a token to keep track of who's turn it is
     **/
 
     // Board is 8 by 8
     private int[][] board = new int[8][8];
-    private int[][][] game_history = new int[8][8][8];
+    private ArrayList<int[][]> game_history = new ArrayList<int[][]>();
     private int player = 1;
 
     public Othello() {
-        int color = 1;
         for (int i = 3; i < 5; i++){
             for (int j = 3; j < 5; j++) {
                 // generate a checkerboard pattern (1 being white, -1 being blue)
@@ -57,6 +58,7 @@ public class Othello {
     }
 
     void move(int[] action) { // Cyril Sharma
+        // advances the game state by the appropiate action, assuming the action is legal
         for (int i = -1; i < 2; i++){
             for (int j = -1; j < 2; j++) {
                 flip_section(action[0], action[1], i, j);
@@ -64,8 +66,9 @@ public class Othello {
         }
         board[action[0]][action[1]] = player;
         player *= -1;
-        // 
-        // advances the game state by the appropiate action, assuming the action is legal
+
+        // we don't want to copy a reference to the latest board state
+        game_history.add(board.clone());
         return;
     }
 
@@ -114,7 +117,7 @@ public class Othello {
 
 
     boolean legal(int[] action) { // Cyril Sharma
-        // crafts an array of arrays, where true corresponds to an action being legal, and false corresponds to an illegal action
+        // checks if an action is legal
         if (board[action[0]][action[1]] != 0)
             return false;
         else
