@@ -26,21 +26,34 @@ public class Othello {
         }
     }
 
-    boolean is_win(int[] action) { // Raka Adakroy
+    boolean is_over() { // Raka Adakroy
         // determines from the last action whether the game has been won or not
-        for (int i = 0; i<8; i++) {
-            for (int j=0; j<8; j++) {
-                if (board[action[0]][action[1]] == 0) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] == 0) {
                     return false;
                 }
             }
         }
+
         return true;
     }
 
-    boolean is_draw() { // Raka Adakroy
+    int[] score() { // Raka Adakroy
         // determines whether the game is drawn
-        return false;
+        int p1_score = 0;
+        int p2_score = 0;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] == 1)
+                    p1_score += 1;
+                else if (board[i][j] == -1) 
+                    p2_score += 1;
+            }
+        }
+
+        int[] scores = {p1_score, p2_score};
+        return scores;
     }
 
     void move(int[] action) { // Cyril Sharma
@@ -100,7 +113,7 @@ public class Othello {
     }
 
 
-    boolean[][] legal() { // Cyril Sharma
+    boolean legal(int[] action) { // Cyril Sharma
         // crafts an array of arrays, where true corresponds to an action being legal, and false corresponds to an illegal action
 
         // dummy variable to make code compile
