@@ -1,5 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
 
 public class Display extends JPanel
 {
@@ -7,23 +9,41 @@ public class Display extends JPanel
    * This class displays only the board, 
    * it does not display any of the interface surrounding the board such as confirmation buttons
    * 
-   * PRIVATE VARIABLES
    * 
-   * game: a class which handles othello game mechanics
+   * @param game: a class which handles othello game mechanics
    */
 
+  private static final int FRAME = 400;
+
+  //fields
+  private BufferedImage image;
+  private JLabel label;
+  private Graphics buffer;
+  private ImageIcon game_image;
+
+
    private Othello game;
-   private JLabel label;
 
    public Display() {
     label = new JLabel();
     label.setIcon(new ImageIcon("othello.png"));
     add(label);
    }
+
+   public void paintComponent(Graphics g)
+   {
+      g.drawImage(image, 0, 0, FRAME, FRAME, null);
+   }
+
    public void move() { // Cyril Sharma
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal 
     // TBD: might probably trigger a pop-up to confirm the move
+
+    buffer.drawImage(.getImage(), xPos, yPos, null);
+
+    repaint();
+
     return;
    }
 
