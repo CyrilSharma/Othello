@@ -107,8 +107,8 @@ public class Othello {
         }
     }
 
-    void unmove() { //Sophia Lu
-        // regresses the game state by the appropiate action, assuming the action was legal
+    void traverse(int step) { //Sophia Lu
+        // advances the display through history by a certain step_size
         return;
     }
 
