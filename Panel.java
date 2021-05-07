@@ -23,7 +23,10 @@ public class Panel extends JPanel
    {
       // get tournament size from user then set number of torunament rounds to that number
       // using 1 as a dummy value
-      tournament = new Tournament(1);
+
+      display = new Display();
+      add(display);
+      //tournament = new Tournament(1);
 
    }
 

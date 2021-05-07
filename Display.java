@@ -3,18 +3,22 @@ import java.awt.event.*;
 
 public class Display extends JPanel
 {
-    /**
-     * This class displays only the board, 
-     * it does not display any of the interface surrounding the board such as confirmation buttons
-     * 
-     * PRIVATE VARIABLES
-     * 
-     * game: a class which handles othello game mechanics
-     */
+  /**
+   * This class displays only the board, 
+   * it does not display any of the interface surrounding the board such as confirmation buttons
+   * 
+   * PRIVATE VARIABLES
+   * 
+   * game: a class which handles othello game mechanics
+   */
+
    private Othello game;
+   private JLabel label;
 
    public Display() {
-
+    label = new JLabel();
+    label.setIcon(new ImageIcon("othello.png"));
+    add(label);
    }
    public void move() { // Cyril Sharma
     // Advances the internal game state, and updates the display
