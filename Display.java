@@ -28,6 +28,9 @@ public class Display extends JPanel
     label = new JLabel();
     label.setIcon(new ImageIcon("othello.png"));
     add(label);
+
+    image =  new BufferedImage(FRAME, FRAME, BufferedImage.TYPE_INT_RGB);
+    buffer = image.getGraphics();
    }
 
    public void paintComponent(Graphics g)
@@ -40,9 +43,9 @@ public class Display extends JPanel
     // Also in charge of determining if move is legal 
     // TBD: might probably trigger a pop-up to confirm the move
 
-    buffer.drawImage(.getImage(), xPos, yPos, null);
+    //buffer.drawImage(.getImage(), xPos, yPos, null);
 
-    repaint();
+    //repaint();
 
     return;
    }
