@@ -13,7 +13,7 @@ public class Othello {
 
     // Board is 8 by 8
     private int[][] board = new int[8][8];
-    private int[][] game_history = new int[8][8];
+    private int[][][] game_history = new int[8][8][8];
     private int player = 1;
 
     public Othello() {
@@ -28,18 +28,14 @@ public class Othello {
 
     boolean is_win(int[] action) { // Raka Adakroy
         // determines from the last action whether the game has been won or not
-        int count = 0;
         for (int i = 0; i<8; i++) {
             for (int j=0; j<8; j++) {
                 if (board[action[0]][action[1]] == 0) {
-                    count++;
+                    return false;
                 }
             }
         }
-        if (count == 0) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     boolean is_draw() { // Raka Adakroy
