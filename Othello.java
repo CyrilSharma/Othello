@@ -115,10 +115,10 @@ public class Othello {
 
     boolean legal(int[] action) { // Cyril Sharma
         // crafts an array of arrays, where true corresponds to an action being legal, and false corresponds to an illegal action
-
-        // dummy variable to make code compile
-        boolean[][] dummy = new boolean[1][1];
-        return dummy;
+        if (board[action[0]][action[1]] != 0)
+            return false;
+        else
+            return true;
     }
 
     void display() {
