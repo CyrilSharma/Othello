@@ -13,11 +13,10 @@ public class Display extends JPanel
    * @param game: a class which handles othello game mechanics
    */
 
-  private static final int FRAME = 400;
+  private static final int FRAME = 200;
 
   //fields
   private BufferedImage image;
-  private JLabel label;
   private Graphics buffer;
   private ImageIcon game_image;
 
@@ -25,12 +24,10 @@ public class Display extends JPanel
    private Othello game;
 
    public Display() {
-    label = new JLabel();
-    label.setIcon(new ImageIcon("othello.png"));
-    add(label);
-
+    game_image = new ImageIcon("othello.png");
     image =  new BufferedImage(FRAME, FRAME, BufferedImage.TYPE_INT_RGB);
     buffer = image.getGraphics();
+    buffer.drawImage(game_image.getImage(), 00, 0, 200, 200, null);
    }
 
    public void paintComponent(Graphics g)
@@ -43,10 +40,8 @@ public class Display extends JPanel
     // Also in charge of determining if move is legal 
     // TBD: might probably trigger a pop-up to confirm the move
 
-    //buffer.drawImage(.getImage(), xPos, yPos, null);
-
-    //repaint();
-
+    buffer.drawImage(game_image.getImage(), 0, 0, 200, 200, null);
+    repaint();
     return;
    }
 
