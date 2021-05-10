@@ -47,6 +47,7 @@ public class Display extends JPanel
 
    private void reset() {   //Sophia Lu 
     // when the game is over, call this method if the player wishes to proceed to a new game
+    
     return;
  }
    private class ClickListener implements ActionListener // Cyril Sharma
