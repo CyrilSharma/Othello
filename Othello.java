@@ -28,7 +28,7 @@ public class Othello {
     }
 
     boolean is_over() { // Raka Adakroy
-        // determines from the last action whether the game has been won or not
+        // determines from the last action whether the game is over or not
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] == 0) {
@@ -36,12 +36,22 @@ public class Othello {
                 }
             }
         }
-
         return true;
     }
 
-    int[] score() { // Raka Adakroy
-        // determines whether the game is drawn
+    boolean is_win() { // Raka Adakroy
+        // determines from the last action whether the game has been won or not
+        int[] scores = score();
+        if (scores[0]+scores[1] == 64) {
+            if (scores[0]<scores[1] || scores[0]>scores[1]) {
+               return true; 
+            }
+        }
+        return false;
+    }    
+
+    int[] score() { // Cyril Sharma
+        // determines the scores
         int p1_score = 0;
         int p2_score = 0;
         for (int i = 0; i < 8; i++) {
