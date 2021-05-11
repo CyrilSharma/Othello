@@ -52,7 +52,7 @@ public class Panel extends JPanel
       // This will play a new move, the difference between this and ForwardButtonListener is it will not advance the state to a previously explored state, it only advances the state to a new state.
       public void actionPerformed(ActionEvent e)
       {
-         return;
+         display.move();
       }
    }
 }

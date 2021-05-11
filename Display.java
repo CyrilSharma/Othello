@@ -27,7 +27,7 @@ public class Display extends JPanel
     game_image = new ImageIcon("othello.png");
     image =  new BufferedImage(FRAME, FRAME, BufferedImage.TYPE_INT_RGB);
     buffer = image.getGraphics();
-    buffer.drawImage(game_image.getImage(), 00, 0, 200, 200, null);
+    buffer.drawImage(game_image.getImage(), 0, 0, 200, 200, null);
    }
 
    public void paintComponent(Graphics g)
