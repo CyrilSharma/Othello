@@ -28,10 +28,11 @@ public class Othello {
     }
 
     boolean is_over() { // Raka Adakroy
-        // determines from the last action whether the game is over or not
+        // determines whether the game is over or not
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board[i][j] == 0) {
+                int[] loc = {i, j};
+                if (legal(loc)) {
                     return false;
                 }
             }
