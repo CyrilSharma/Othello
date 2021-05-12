@@ -24,9 +24,35 @@ public class Panel extends JPanel
       // get tournament size from user then set number of torunament rounds to that number
       // using 1 as a dummy value
 
-      setLayout(new GridLayout(2,1));
+      setLayout(new GridBagLayout());
+      GridBagConstraints c = new GridBagConstraints();
+
       display = new Display();
-      add(display);
+      c.fill = GridBagConstraints.BOTH;
+      c.anchor = GridBagConstraints.LINE_END;
+      c.ipady = 100;      //make this component tall
+      c.weighty = 0.75;
+      c.weightx = 1.0;
+      c.gridwidth = 1;
+      c.gridheight = 1;
+      c.gridx = 0;
+      c.gridy = 0;
+
+      add(display, c);
+
+      JPanel subPanel = new JPanel();
+      subPanel.add(new JButton("HELLO!"));
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.anchor = GridBagConstraints.CENTER;
+      c.ipady = 0;
+      c.gridx = 0;
+      c.gridy = 1;
+      c.weighty = 0.25;
+      c.gridwidth = 1;   //2 columns wide
+      c.gridheight = 1;
+
+
+      add(subPanel, c);
       //tournament = new Tournament(1);
 
    }

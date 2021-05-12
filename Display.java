@@ -33,7 +33,7 @@ public class Display extends JPanel {
   public void paintComponent(Graphics g) {
     drawBoardToBuffer();
     Dimension d = getSize();
-    g.drawImage(image, 0, 0, d.width, d.width, null);
+    g.drawImage(image, 0, 0, d.height, d.height, null);
   }
 
   public void drawBoardToBuffer() {
