@@ -37,22 +37,12 @@ public class Othello {
                 }
             }
         }
+
         return true;
     }
 
-    boolean is_win() { // Raka Adakroy
-        // determines from the last action whether the game has been won or not
-        int[] scores = score();
-        if (scores[0]+scores[1] == 64) {
-            if (scores[0]<scores[1] || scores[0]>scores[1]) {
-               return true; 
-            }
-        }
-        return false;
-    }    
-
-    int[] score() { // Cyril Sharma
-        // determines the scores
+    int[] score() { // Raka Adakroy
+        // determines whether the game is drawn
         int p1_score = 0;
         int p2_score = 0;
         for (int i = 0; i < 8; i++) {
