@@ -125,6 +125,11 @@ public class Othello {
             return true;
     }
 
+    // accessor method for board state
+    int state(int i, int j) {
+        return board[i][j];
+    }
+
     void display() {
         String RED = "\033[0;31m";     // RED
         String BLUE = "\033[0;34m";    // BLUE
