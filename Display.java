@@ -12,7 +12,7 @@ public class Display extends JPanel {
    * @param game: a class which handles othello game mechanics
    */
 
-  private static final int FRAME = FRAME;
+  private static final int FRAME = 200;
 
   // fields
   private BufferedImage image;
@@ -22,6 +22,7 @@ public class Display extends JPanel {
   private Othello game;
 
   public Display() {
+    game = new Othello();
     game_image = new ImageIcon("othello.png");
     image = new BufferedImage(FRAME, FRAME, BufferedImage.TYPE_INT_ARGB);
     buffer = image.getGraphics();
@@ -29,6 +30,7 @@ public class Display extends JPanel {
 
   public void paintComponent(Graphics g) {
     drawBoardToBuffer();
+    
     g.drawImage(image, 0, 0, FRAME, FRAME, null);
   }
 
@@ -41,13 +43,12 @@ public class Display extends JPanel {
       for (int j = 0; j < 8; j++) {
         state = game.state(i, j);
 
-        if (state != 0)
+        if (state != 0) {
           p = new Piece(i, j, 10, state);
-        p.draw(buffer);
+          p.draw(buffer);
+        }
       }
     }
-
-    repaint();
   }
 
   public void move(int[] action) { // Cyril Sharma
@@ -65,11 +66,25 @@ public class Display extends JPanel {
     return;
   }
 
-  private class ClickListener implements ActionListener // Cyril Sharma
+  private class ClickListener implements MouseListener // Cyril Sharma
   {
     // This will call the move method whenever a square is clicked
-    public void actionPerformed(ActionEvent e) {
-      move();
+
+    public void mouseClicked(MouseEvent e) {
+      int[] action = { 0, 1 };
+      move(action);
+    }
+
+    public void mousePressed(MouseEvent e) {
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
     }
   }
 }
