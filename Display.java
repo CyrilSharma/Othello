@@ -16,6 +16,7 @@ public class Display extends JPanel {
 
   // fields
   private BufferedImage image;
+  private Image scaled;
   private Graphics buffer;
   private ImageIcon game_image;
 
@@ -26,12 +27,13 @@ public class Display extends JPanel {
     game_image = new ImageIcon("othello.png");
     image = new BufferedImage(FRAME, FRAME, BufferedImage.TYPE_INT_ARGB);
     buffer = image.getGraphics();
+
   }
 
   public void paintComponent(Graphics g) {
     drawBoardToBuffer();
-    
-    g.drawImage(image, 0, 0, FRAME, FRAME, null);
+    Dimension d = getSize();
+    g.drawImage(image, 0, 0, d.width, d.height, null);
   }
 
   public void drawBoardToBuffer() {
