@@ -28,10 +28,11 @@ public class Othello {
     }
 
     boolean is_over() { // Raka Adakroy
-        // determines from the last action whether the game has been won or not
+        // determines whether the game is over or not
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board[i][j] == 0) {
+                int[] loc = {i, j};
+                if (legal(loc)) {
                     return false;
                 }
             }
@@ -124,6 +125,11 @@ public class Othello {
             return true;
     }
 
+    // accessor method for board state
+    int state(int i, int j) {
+        return board[i][j];
+    }
+
     void display() {
         String RED = "\033[0;31m";     // RED
         String BLUE = "\033[0;34m";    // BLUE
@@ -145,4 +151,5 @@ public class Othello {
         }
         System.out.println("");
     }
+
 }

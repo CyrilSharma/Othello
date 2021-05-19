@@ -8,6 +8,7 @@ public class Tests {
     {
         Othello board = new Othello();
         int[] move = {2,3};
+        board.display();
         board.move(move);
         board.display();
 
