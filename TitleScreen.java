@@ -12,10 +12,14 @@ public class TitleScreen extends JPanel
      * title: just a title for the loading screen
      */
 
-    private JLabel title;
+    private JLabel title = new JLabel("Othello");
 
-    public TitleScreen() {
-
+    public TitleScreen() { //Raka Adakroy
+        setLayout(new BorderLayout());
+        title.setFont(new Font("Time", Font.PLAIN, 16));
+        add(title, BorderLayout.CENTER);
+        add(new JButton("Start"), BorderLayout.SOUTH);
+        add(new JButton("Rules"), BorderLayout.SOUTH);
     }
 
     private class StartListener implements ActionListener // Raka Adakroy
