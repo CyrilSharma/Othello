@@ -43,21 +43,6 @@ public class Panel extends JPanel
 
       add(display, c);
 
-      JPanel subPanel = new JPanel();
-      subPanel.add(new JButton("HELLO!"));
-      c.fill = GridBagConstraints.HORIZONTAL;
-      c.anchor = GridBagConstraints.CENTER;
-      c.ipady = 0;
-      c.gridx = 0;
-      c.gridy = 1;
-      c.weighty = 0.25;
-      c.gridwidth = 1;   //2 columns wide
-      c.gridheight = 1;
-
-
-      add(subPanel, c);
-      //tournament = new Tournament(1);
-
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
 
@@ -73,8 +58,18 @@ public class Panel extends JPanel
       move.addActionListener(new MoveListener());
       subpanel.add(move);
 
-      add(subpanel, BorderLayout.SOUTH);
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.anchor = GridBagConstraints.CENTER;
+      c.ipady = 0;
+      c.gridx = 0;
+      c.gridy = 1;
+      c.weighty = 0.25;
+      c.gridwidth = 1;   //2 columns wide
+      c.gridheight = 1;
 
+
+      add(subpanel, c);
+      //tournament = new Tournament(1);
    }
    private class ForwardButtonListener implements ActionListener // Cyril Sharma
    {
