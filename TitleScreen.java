@@ -23,7 +23,13 @@ public class TitleScreen extends JPanel
         // This will initiate the game when the start button is clicked
         public void actionPerformed(ActionEvent e)
         {
-        return;
+            JFrame frame = new JFrame("Othello");
+
+            frame.setSize(500, 500);
+            frame.setLocation(200, 100);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(new Panel());
+            frame.setVisible(true);
         }
     }
 
