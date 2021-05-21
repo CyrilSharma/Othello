@@ -18,8 +18,12 @@ public class TitleScreen extends JPanel
         setLayout(new BorderLayout());
         title.setFont(new Font("Time", Font.PLAIN, 16));
         add(title, BorderLayout.CENTER);
-        add(new JButton("Start"), BorderLayout.SOUTH);
-        add(new JButton("Rules"), BorderLayout.SOUTH);
+        JButton start = new JButton("Start");
+        start.addActionListener(new StartListener());
+        add(start, BorderLayout.SOUTH);
+        JButton rules = new JButton("Rules");
+        rules.addActionListener(new RuleListener());
+        add(rules, BorderLayout.SOUTH);
     }
 
     private class StartListener implements ActionListener // Raka Adakroy
