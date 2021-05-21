@@ -24,8 +24,6 @@ public class Panel extends JPanel
       // using 1 as a dummy value
       tournament = new Tournament(1);
 
-      setLayout(new BorderLayout());
-
       setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
 
