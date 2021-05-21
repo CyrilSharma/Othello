@@ -47,7 +47,7 @@ public class TitleScreen extends JPanel
         // This will open the rules for the game
         public void actionPerformed(ActionEvent e)
         {
-            JOptionPane.showMessageDialog(null, "1. Black always moves first\n2. If on your turn, you can not flip at least one of your opponents discs, the game is a draw\n3. A disc may outflank any number of dics in any direction\n4. You may not skip over your own color to outflank an opposing disc\n5. Discs may only be outflanked as a direct result of a move");;
+            JOptionPane.showMessageDialog(null, "1. Black always moves first\n2. If on your turn, you can not flip at least one of your opponents discs, the game is a draw\n3. A disc may outflank any number of dics in any direction\n4. You may not skip over your own color to outflank an opposing disc\n5. Discs may only be outflanked as a direct result of a move");
         }
     }
 }
