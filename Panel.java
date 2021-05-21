@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 public class Panel extends JPanel
 {
    /**
@@ -14,7 +17,7 @@ public class Panel extends JPanel
     * title: the title of the game
     */
 
-   private Display display;
+   private JLabel display;
    private Tournament tournament;
    private JLabel title;
 
@@ -28,9 +31,17 @@ public class Panel extends JPanel
       GridBagConstraints c = new GridBagConstraints();
 
       display = new Display();
+      try {
+         display.setIcon(new ImageIcon("othello.png"));
+      } 
+      
+      catch (Exception ex) {
+         System.err.println("Couldn't find file.");
+     }  
 
-      c.fill = GridBagConstraints.BOTH;
-      c.anchor = GridBagConstraints.LINE_END;
+
+      // c.fill = GridBagConstraints.BOTH;
+      c.anchor = GridBagConstraints.CENTER;
       c.ipady = 100;      //make this component tall
       c.weighty = 0.75;
       c.weightx = 1.0;
@@ -38,6 +49,8 @@ public class Panel extends JPanel
       c.gridheight = 1;
       c.gridx = 0;
       c.gridy = 0;
+
+      display.setPreferredSize(new Dimension(400, 300));
 
       add(display, c);
 

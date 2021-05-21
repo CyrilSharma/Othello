@@ -2,8 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import java.awt.Dimension.*;
 
-public class Display extends JPanel {
+public class Display extends JLabel {
   /**
    * This class displays only the board, it does not display any of the interface
    * surrounding the board such as confirmation buttons
@@ -31,9 +32,17 @@ public class Display extends JPanel {
   }
 
   public void paintComponent(Graphics g) {
-    drawBoardToBuffer();
-    Dimension d = getSize();
-    g.drawImage(image, 0, 0, d.height, d.height, null);
+    ImageIcon icon = (ImageIcon) getIcon();
+    if (icon != null) {
+      ImageDrawer.drawScaledImage(icon.getImage(), this, g);
+    }
+  }
+
+  public Dimension getPreferredSize() {
+    Dimension d = this.getParent().getSize();
+    int height = (int) (d.getHeight() * 0.75);
+    d.setSize(height, height);
+    return d;
   }
 
   public void drawBoardToBuffer() {
