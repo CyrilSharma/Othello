@@ -32,7 +32,7 @@ public class Panel extends JPanel
 
       display = new Display();
       try {
-         display.setIcon(new ImageIcon("othello.png"));
+         display.setIcon(new ImageIcon("othello.jpg"));
       } 
       
       catch (Exception ex) {
@@ -40,9 +40,8 @@ public class Panel extends JPanel
      }  
 
 
-      // c.fill = GridBagConstraints.BOTH;
-      c.anchor = GridBagConstraints.CENTER;
-      c.ipady = 100;      //make this component tall
+      c.fill = GridBagConstraints.BOTH;
+      c.anchor = GridBagConstraints.NORTHWEST;
       c.weighty = 0.75;
       c.weightx = 1.0;
       c.gridwidth = 1;
@@ -50,7 +49,7 @@ public class Panel extends JPanel
       c.gridx = 0;
       c.gridy = 0;
 
-      display.setPreferredSize(new Dimension(400, 300));
+      display.setPreferredSize(new Dimension(1000, 1000));
 
       add(display, c);
 

@@ -4,7 +4,7 @@ import java.awt.Image;
 
 public class ImageDrawer {
      
-    public static void drawScaledImage(Image image, Component canvas, Graphics g) {
+    public static ImageManager drawScaledImage(Image image, Component canvas, Graphics g) {
         int imgWidth = image.getWidth(null);
         int imgHeight = image.getHeight(null);
          
@@ -46,5 +46,6 @@ public class ImageDrawer {
         }
  
         g.drawImage(image, x1, y1, x2, y2, 0, 0, imgWidth, imgHeight, null);
+        return new ImageManager(x1, y1, x2, y2);
     }
 }

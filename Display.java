@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
-import java.awt.Dimension.*;
-
 public class Display extends JLabel {
   /**
    * This class displays only the board, it does not display any of the interface
@@ -13,28 +11,22 @@ public class Display extends JLabel {
    * @param game: a class which handles othello game mechanics
    */
 
-  private static final int FRAME = 200;
-
   // fields
   private BufferedImage image;
-  private Image scaled;
   private Graphics buffer;
-  private ImageIcon game_image;
 
   private Othello game;
+  private ImageManager imgData;
 
   public Display() {
     game = new Othello();
-    game_image = new ImageIcon("othello.png");
-    image = new BufferedImage(FRAME, FRAME, BufferedImage.TYPE_INT_ARGB);
-    buffer = image.getGraphics();
-
+    addMouseListener(new ClickListener());
   }
 
   public void paintComponent(Graphics g) {
     ImageIcon icon = (ImageIcon) getIcon();
     if (icon != null) {
-      ImageDrawer.drawScaledImage(icon.getImage(), this, g);
+      imgData = ImageDrawer.drawScaledImage(icon.getImage(), this, g);
     }
   }
 
@@ -45,8 +37,7 @@ public class Display extends JLabel {
     return d;
   }
 
-  public void drawBoardToBuffer() {
-    buffer.drawImage(game_image.getImage(), 0, 0, FRAME, FRAME, null);
+/*   public void drawBoardToBuffer() {
 
     int state;
     Piece p;
@@ -60,7 +51,7 @@ public class Display extends JLabel {
         }
       }
     }
-  }
+  } */
 
   public void move(int[] action) { // Cyril Sharma
     // Advances the internal game state, and updates the display
@@ -82,11 +73,23 @@ public class Display extends JLabel {
     // This will call the move method whenever a square is clicked
 
     public void mouseClicked(MouseEvent e) {
-      int[] action = { 0, 1 };
-      move(action);
     }
 
     public void mousePressed(MouseEvent e) {
+      Point coord = e.getPoint();
+      double x = coord.getX();
+      double y = coord.getY();
+      System.out.println("x: " + x);
+      System.out.println("y: " + y);
+      System.out.println("x1: " + imgData.get_x1());
+      System.out.println("y1: " + imgData.get_y1());
+      System.out.println("x2: " + imgData.get_x2());
+      System.out.println("y2: " + imgData.get_y2());
+      int boxSize = (imgData.get_x2() - imgData.get_x1()) / 8;
+      int xCoord = ((int) x - imgData.get_x1()) / boxSize;
+      int yCoord = ((int) y - imgData.get_y1()) / boxSize;
+      System.out.println("xCoord: " + xCoord);
+      System.out.println("yCoord: " + yCoord);
     }
 
     public void mouseReleased(MouseEvent e) {
