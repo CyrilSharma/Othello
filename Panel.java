@@ -30,15 +30,7 @@ public class Panel extends JPanel
       setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
 
-      display = new Display();
-      try {
-         display.setIcon(new ImageIcon("othello.jpg"));
-      } 
-      
-      catch (Exception ex) {
-         System.err.println("Couldn't find file.");
-     }  
-
+      display = new Display("othello.jpg");
 
       c.fill = GridBagConstraints.BOTH;
       c.anchor = GridBagConstraints.NORTHWEST;

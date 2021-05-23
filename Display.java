@@ -12,53 +12,76 @@ public class Display extends JLabel {
    */
 
   // fields
-  private BufferedImage image;
+  private BufferedImage myImage;
   private Graphics buffer;
 
   private Othello game;
+  private ImageIcon icon;
   private ImageManager imgData;
 
-  public Display() {
+  public Display(String imgpath) {
     game = new Othello();
+    icon = new ImageIcon(imgpath);
+
+    myImage = new BufferedImage(
+    icon.getIconWidth(),
+    icon.getIconHeight(),
+    BufferedImage.TYPE_INT_RGB);
+
+    buffer = myImage.getGraphics();
     addMouseListener(new ClickListener());
   }
 
   public void paintComponent(Graphics g) {
-    ImageIcon icon = (ImageIcon) getIcon();
-    if (icon != null) {
-      imgData = ImageDrawer.drawScaledImage(icon.getImage(), this, g);
-    }
+    buffer.clearRect(0, 0, (int) getWidth(), (int) getHeight());
+    imgData = ImageDrawer.drawScaledImage(icon.getImage(), this, buffer);
+    drawBoardToBuffer();
+    g.drawImage(myImage, 0, 0, icon.getImage().getWidth(null), icon.getImage().getHeight(null), null);
   }
 
-  public Dimension getPreferredSize() {
-    Dimension d = this.getParent().getSize();
-    int height = (int) (d.getHeight() * 0.75);
-    d.setSize(height, height);
-    return d;
-  }
-
-/*   public void drawBoardToBuffer() {
+  public void drawBoardToBuffer() {
 
     int state;
+    int offset = (imgData.get_x2() - imgData.get_x1()) / 16;
+    int boxSize = offset * 2;
+
     Piece p;
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
         state = game.state(i, j);
 
         if (state != 0) {
-          p = new Piece(i, j, 10, state);
+          p = new Piece(i * boxSize + imgData.get_x1() + offset, j * boxSize + imgData.get_y1() + offset, 
+          0.75 * boxSize, state);
           p.draw(buffer);
         }
       }
     }
-  } */
+  }
 
   public void move(int[] action) { // Cyril Sharma
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
-    Piece p = new Piece(action[0], action[1], 100, 1);
-    p.draw(buffer);
+
+    game.move(action);
+
+    int state;
+    int offset = (imgData.get_x2() - imgData.get_x1()) / 16;
+    int boxSize = offset * 2;
+
+    Piece p;
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        state = game.state(i, j);
+
+        if (state != 0) {
+          p = new Piece(i * boxSize + imgData.get_x1() + offset, j * boxSize + imgData.get_y1() + offset, 
+          0.75 * boxSize, state);
+          p.draw(buffer);
+        }
+      }
+    }
     repaint();
   }
 
@@ -90,6 +113,8 @@ public class Display extends JLabel {
       int yCoord = ((int) y - imgData.get_y1()) / boxSize;
       System.out.println("xCoord: " + xCoord);
       System.out.println("yCoord: " + yCoord);
+      int[] action = {xCoord, yCoord};
+      move(action);
     }
 
     public void mouseReleased(MouseEvent e) {
