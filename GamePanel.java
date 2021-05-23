@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-public class Panel extends JPanel
+public class GamePanel extends JPanel
 {
    /**
     * This class displays and handles events within the entire GUI, complete with the board and button interactions
@@ -21,7 +21,7 @@ public class Panel extends JPanel
    private Tournament tournament;
    private JLabel title;
 
-   public Panel()
+   public GamePanel()
    {
       // get tournament size from user then set number of torunament rounds to that number
       // using 1 as a dummy value

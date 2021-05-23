@@ -64,7 +64,8 @@ public class Display extends JLabel {
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
 
-    game.move(action);
+    if (game.legal(action))
+      game.move(action);
 
     int state;
     int offset = (imgData.get_x2() - imgData.get_x1()) / 16;

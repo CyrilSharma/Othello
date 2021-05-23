@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class TitleScreen extends JPanel
+public class TitlePanel extends JPanel
 {
 
     /**
@@ -15,16 +15,23 @@ public class TitleScreen extends JPanel
 
     private JLabel title = new JLabel("Othello");
 
-    public TitleScreen() { //Raka Adakroy
+    public TitlePanel() { //Raka Adakroy
         setLayout(new BorderLayout());
         title.setFont(new Font("Time", Font.PLAIN, 16));
         add(title, BorderLayout.CENTER);
+
+        JPanel subpanel = new JPanel();
+        subpanel.setLayout(new FlowLayout());
+
         JButton start = new JButton("Start");
         start.addActionListener(new StartListener());
-        add(start, BorderLayout.SOUTH);
+        subpanel.add(start);
+
         JButton rules = new JButton("Rules");
         rules.addActionListener(new RuleListener());
-        add(rules, BorderLayout.SOUTH);
+        subpanel.add(rules);
+
+        add(subpanel, BorderLayout.SOUTH);
     }
 
     private class StartListener implements ActionListener // Raka Adakroy
@@ -32,13 +39,7 @@ public class TitleScreen extends JPanel
         // This will initiate the game when the start button is clicked
         public void actionPerformed(ActionEvent e)
         {
-            JFrame frame = new JFrame("Othello");
-
-            frame.setSize(500, 500);
-            frame.setLocation(200, 100);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setContentPane(new Panel());
-            frame.setVisible(true);
+            getParent().dispatchEvent(e);
         }
     }
 
