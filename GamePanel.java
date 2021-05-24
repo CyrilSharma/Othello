@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Panel extends JPanel
+import java.io.File;
+
+import javax.imageio.ImageIO;
+public class GamePanel extends JPanel
 {
    /**
     * This class displays and handles events within the entire GUI, complete with the board and button interactions
@@ -14,26 +17,23 @@ public class Panel extends JPanel
     * title: the title of the game
     */
 
-   private Display display;
+   private JLabel display;
    private Tournament tournament;
    private JLabel title;
 
-   public Panel()
+   public GamePanel()
    {
       // get tournament size from user then set number of torunament rounds to that number
       // using 1 as a dummy value
       tournament = new Tournament(1);
 
-      setLayout(new BorderLayout());
-
       setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
 
-      display = new Display();
+      display = new Display("othello.jpg");
 
       c.fill = GridBagConstraints.BOTH;
-      c.anchor = GridBagConstraints.LINE_END;
-      c.ipady = 100;      //make this component tall
+      c.anchor = GridBagConstraints.NORTHWEST;
       c.weighty = 0.75;
       c.weightx = 1.0;
       c.gridwidth = 1;
@@ -41,22 +41,9 @@ public class Panel extends JPanel
       c.gridx = 0;
       c.gridy = 0;
 
+      display.setPreferredSize(new Dimension(1000, 1000));
+
       add(display, c);
-
-      JPanel subPanel = new JPanel();
-      subPanel.add(new JButton("HELLO!"));
-      c.fill = GridBagConstraints.HORIZONTAL;
-      c.anchor = GridBagConstraints.CENTER;
-      c.ipady = 0;
-      c.gridx = 0;
-      c.gridy = 1;
-      c.weighty = 0.25;
-      c.gridwidth = 1;   //2 columns wide
-      c.gridheight = 1;
-
-
-      add(subPanel, c);
-      //tournament = new Tournament(1);
 
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
@@ -73,6 +60,19 @@ public class Panel extends JPanel
       move.addActionListener(new MoveListener());
       subpanel.add(move);
 
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.anchor = GridBagConstraints.CENTER;
+      c.ipady = 0;
+      c.gridx = 0;
+      c.gridy = 1;
+      c.weighty = 0.25;
+      c.gridwidth = 1;   //2 columns wide
+      c.gridheight = 1;
+
+
+      add(subpanel, c);
+      //tournament = new Tournament(1);
+>>>>>>> da4b1c75f5d994f9a3a8fa9edd2918c3a3ed5bbb:GamePanel.java
    }
    private class ForwardButtonListener implements ActionListener // Cyril Sharma
    {
