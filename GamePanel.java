@@ -71,14 +71,15 @@ public class GamePanel extends JPanel
 
 
       add(subpanel, c);
+      
       //tournament = new Tournament(1);
->>>>>>> da4b1c75f5d994f9a3a8fa9edd2918c3a3ed5bbb:GamePanel.java
    }
    private class ForwardButtonListener implements ActionListener // Cyril Sharma
    {
       // This will advance the game state by one move when the button is clicked, but will only advance the gamestate to previous moves
       public void actionPerformed(ActionEvent e)
       {
+         board.traverse(1);
          return;
       }
    }
@@ -87,7 +88,7 @@ public class GamePanel extends JPanel
       // This will regress the game state by one move when the button is clicked
       public void actionPerformed(ActionEvent e)
       {
-         
+         board.traverse(-1);
          return;
       }
    }
@@ -97,8 +98,8 @@ public class GamePanel extends JPanel
       // This will play a new move, the difference between this and ForwardButtonListener is it will not advance the state to a previously explored state, it only advances the state to a new state.
       public void actionPerformed(ActionEvent e)
       {
-  //       display.move();
-  return;
+    //     display.move();
+            return;
       }
    }
 }

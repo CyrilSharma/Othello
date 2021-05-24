@@ -113,7 +113,19 @@ public class Othello {
 
     void traverse(int step) { //Sophia Lu
         // advances the display through history by a certain step_size
-        return;
+        int length = game_history.size();
+        if (length > step) {
+            int[][] old_board = game_history.get(length - step);
+               for (int i = -1; i < 2; i++) {
+                  for (int j = -1; j < 2; j++) {
+                     board[i][j] = old_board[i][j];
+                  }
+            }
+               return;
+         }
+         else  {
+            return;
+         }
     }
 
 
