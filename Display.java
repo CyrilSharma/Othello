@@ -42,8 +42,8 @@ public class Display extends JLabel {
   public void drawBoardToBuffer() {
 
     int state;
-    int offset = (imgData.get_x2() - imgData.get_x1()) / 16;
-    int boxSize = offset * 2;
+    int offset = (int) ((imgData.get_x2() - imgData.get_x1()) / 16.0);
+    int boxSize = (int) ((imgData.get_x2() - imgData.get_x1()) / 8.0);
 
     Piece p;
     for (int i = 0; i < 8; i++) {
