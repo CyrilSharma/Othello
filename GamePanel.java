@@ -31,7 +31,6 @@ public class GamePanel extends JPanel
       titlePanel.setLayout(new FlowLayout());
       add(titlePanel);
 
-<<<<<<< HEAD
       int num_of_rounds = Integer.parseInt(JOptionPane.showInputDialog("How many rounds would you like to play?"));
 
       tournament = new Tournament(num_of_rounds);
@@ -58,9 +57,7 @@ public class GamePanel extends JPanel
       display.setPreferredSize(new Dimension(1000, 1000));
 
       add(display, c);  */
-=======
       add(display, c);
->>>>>>> cc740918b78779c361359bf74867eb2257665990
 
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
@@ -99,11 +96,7 @@ public class GamePanel extends JPanel
       // This will advance the game state by one move when the button is clicked, but will only advance the gamestate to previous moves
       public void actionPerformed(ActionEvent e)
       {
-<<<<<<< HEAD
-    //     .traverse(1);
-=======
          display.traverse(1);
->>>>>>> cc740918b78779c361359bf74867eb2257665990
          return;
       }
    }
@@ -112,11 +105,7 @@ public class GamePanel extends JPanel
       // This will regress the game state by one move when the button is clicked
       public void actionPerformed(ActionEvent e)
       {
-<<<<<<< HEAD
-       //  board.traverse(-1);
-=======
          display.traverse(-1);
->>>>>>> cc740918b78779c361359bf74867eb2257665990
          return;
       }
    }

@@ -107,16 +107,14 @@ public class Display extends JLabel {
       moved = true;
     }
 
-<<<<<<< HEAD
     Piece p;
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
         state = game.getState(i, j);
-=======
+        }
     repaint();
   }
->>>>>>> cc740918b78779c361359bf74867eb2257665990
-
+}
   public void finalize_move() {
     moved = false;
     current_action = null;
