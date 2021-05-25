@@ -18,6 +18,8 @@ public class Display extends JLabel {
   private Othello game;
   private ImageIcon icon;
   private ImageManager imgData;
+  private boolean moved = false;
+  private int[] current_action = null;
 
   public Display(String imgpath) {
     game = new Othello();
@@ -57,32 +59,35 @@ public class Display extends JLabel {
         }
       }
     }
+
+    if (current_action != null) {
+      System.out.println("Current action is now displayed.");
+      p = new Piece(current_action[0] * boxSize + imgData.get_x1() + offset, current_action[1] * boxSize + imgData.get_y1() + offset, 0.75 * boxSize, 0);
+      p.draw(buffer);
+    }
   }
+
 
   public void move(int[] action) { // Cyril Sharma
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
 
-    if (game.legal(action))
+    if (moved)
+      return;
+
+    if (game.legal(action)) {
       game.move(action);
-
-    int state;
-    int offset = (imgData.get_x2() - imgData.get_x1()) / 16;
-    int boxSize = offset * 2;
-
-    Piece p;
-    for (int i = 0; i < 8; i++) {
-      for (int j = 0; j < 8; j++) {
-        state = game.state(i, j);
-
-        if (state != 0) {
-          p = new Piece(i * boxSize + imgData.get_x1() + offset, j * boxSize + imgData.get_y1() + offset, 
-          0.75 * boxSize, state);
-          p.draw(buffer);
-        }
-      }
+      current_action = action;
+      moved = true;
     }
+
+    repaint();
+  }
+
+  public void finalize_move() {
+    moved = false;
+    current_action = null;
     repaint();
   }
 

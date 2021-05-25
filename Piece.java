@@ -16,8 +16,7 @@ public class Piece {
         else if (player == -1)
             color = Color.WHITE;
         else
-            // transparent
-            color = new Color(0,0,0,0);
+            color = Color.GRAY;
     }
 
     // modifier methods
@@ -32,8 +31,7 @@ public class Piece {
         else if (state_val == -1)
             color = Color.WHITE;
         else
-            // transparent
-            color = new Color(0,0,0,0);
+            color = Color.YELLOW;
     }
 
     public void setDiameter(double d) {
