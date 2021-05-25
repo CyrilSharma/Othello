@@ -27,6 +27,8 @@ public class GamePanel extends JPanel
       // using 1 as a dummy value
       tournament = new Tournament(1);
 
+      // setPreferredSize(new Dimension(400, 400));
+
       setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
 
@@ -40,8 +42,6 @@ public class GamePanel extends JPanel
       c.gridheight = 1;
       c.gridx = 0;
       c.gridy = 0;
-
-      display.setPreferredSize(new Dimension(1000, 1000));
 
       add(display, c);
 

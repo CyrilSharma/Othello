@@ -76,7 +76,7 @@ public class Display extends JLabel {
   }
 
   public void traverse(int step) {
-    // i.e if the player wants to retract a move the considered.
+    // i.e if the player wants to retract a move they considered.
     if (step == -1 & moved == true) {
       current_action = null;
       game.unmove();
@@ -84,6 +84,8 @@ public class Display extends JLabel {
     }
     else if (moved == false) {
       game.traverse(step);
+
+      // if the game is at its latest position, set this value to true.
       current = game.current();
     }
 

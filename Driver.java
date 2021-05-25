@@ -10,7 +10,7 @@ public class Driver {
       frame.setLocation(200, 100);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setContentPane(new GamePanel());
-      frame.setMinimumSize(new Dimension(300, 300));
+      frame.setMinimumSize(new Dimension(400, 400));
       frame.setVisible(true);
    }
 }
