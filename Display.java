@@ -19,6 +19,7 @@ public class Display extends JLabel {
   private ImageIcon icon;
   private ImageManager imgData;
   private boolean moved = false;
+  private boolean current = true;
   private int[] current_action = null;
 
   public Display(String imgpath) {
@@ -67,13 +68,29 @@ public class Display extends JLabel {
     }
   }
 
+  public void traverse(int step) {
+    // i.e if the player wants to retract a move the considered.
+    if (step == -1 & moved == true) {
+      current_action = null;
+      game.unmove();
+      moved = false;
+    }
+    else if (moved == false) {
+      game.traverse(step);
+      current = game.current();
+    }
+
+    repaint();
+  }
+
 
   public void move(int[] action) { // Cyril Sharma
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
+    System.out.println("Current " + current);
 
-    if (moved)
+    if (moved || !current)
       return;
 
     if (game.legal(action)) {

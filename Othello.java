@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable.UnaryOp.Abs;
-
 // DIVISION OF LABOR
 // -- This will be mostly written by Cyril and Sophiathe
 public class Othello {
@@ -16,17 +14,19 @@ public class Othello {
     **/
 
     // Board is 8 by 8
-    private int[][] board = new int[8][8];
     private ArrayList<int[][]> game_history = new ArrayList<int[][]>();
     private int player = 1;
+    private int time = 0;
 
     public Othello() {
+        int[][] board = new int[8][8];
         for (int i = 3; i < 5; i++){
             for (int j = 3; j < 5; j++) {
                 // generate a checkerboard pattern (1 being white, -1 being blue)
                 board[i][j] = (((i + j) % 2) * 2) - 1;
             }
         }
+        game_history.add(deepcopy(board));
     }
 
     boolean is_over() { // need to be upgraded
@@ -45,6 +45,7 @@ public class Othello {
 
     int[] score() { // Raka Adakroy
         // determines whether the game is drawn
+        int[][] board = game_history.get(game_history.size() - 1);
         int p1_score = 0;
         int p2_score = 0;
         for (int i = 0; i < 8; i++) {
@@ -63,11 +64,12 @@ public class Othello {
     void move(int[] action) { // Cyril Sharma
         // advances the game state by the appropiate action, assuming the action is legal
         int offset;
+        int[][] board = deepcopy(game_history.get(game_history.size() - 1));
         for (int i = -1; i < 2; i++){
             for (int j = -1; j < 2; j++) {
                 offset = check_direction(action[0], action[1], i, j);
                 if (offset != 0)
-                    flip_section(action[0], action[1], action[0] + i * offset, action[1] + j * offset);
+                    flip_section(board, action[0], action[1], action[0] + i * offset, action[1] + j * offset);
             }
         }
 
@@ -75,12 +77,20 @@ public class Othello {
         player *= -1;
 
         // we don't want to copy a reference to the latest board state
-        game_history.add(board.clone());
+        game_history.add(board);
+        time += 1;
         return;
+    }
+
+    void unmove() {
+        game_history.remove(game_history.size() - 1);
+        player *= -1;
+        time -= 1;
     }
 
     // returns othe amount in the specified direction the enclosing piece is
     int check_direction(int row, int col, int delta_row, int delta_col) {
+        int[][] board = game_history.get(game_history.size() - 1);
         int current_row = row + delta_row;
         int current_col = col + delta_col;
         int counter = 1;
@@ -120,8 +130,7 @@ public class Othello {
     }
 
     
-    void flip_section(int row, int col, int final_row, int final_col) {
-
+    void flip_section(int[][] board, int row, int col, int final_row, int final_col) {
         int r = row;
         int c = col;
         int delta_row;
@@ -146,23 +155,19 @@ public class Othello {
 
     void traverse(int step) { //Sophia Lu
         // advances the display through history by a certain step_size
+        System.out.println("Time: " + time);
         int length = game_history.size();
-        if (length > step) {
-            int[][] old_board = game_history.get(length - step);
-               for (int i = -1; i < 2; i++) {
-                  for (int j = -1; j < 2; j++) {
-                     board[i][j] = old_board[i][j];
-                  }
-            }
-               return;
-         }
-         else  {
-            return;
-         }
+        if ((time + step) >= 0 & (time + step) < length) {
+            time += step;  
+            player *= -1;
+            System.out.println("time " + time);
+        }
     }
 
 
     boolean legal(int[] action) { // Cyril Sharma
+        int[][] board = game_history.get(game_history.size() - 1);
+        display();
         // checks if an action is legal
         boolean valid = false;
         int offset;
@@ -179,12 +184,26 @@ public class Othello {
         return valid;
     }
 
+    private int[][] deepcopy(int[][] array) {
+        int[][] new_array = new int[array.length][array[0].length];
+        for (int i = 0; i < array.length; i++) {
+            new_array[i] = array[i].clone();
+        }
+        return new_array;
+    }
+
     // accessor method for board state
-    int state(int i, int j) {
-        return board[i][j];
+    public int state(int i, int j) {
+        return game_history.get(time)[i][j];
+    }
+
+    // determines if board is at some point in the past, or at the current move.
+    public boolean current() {
+        return time == (game_history.size() - 1);
     }
 
     void display() {
+        int[][] board = game_history.get(game_history.size() - 1);
         String RED = "\033[0;31m";     // RED
         String BLUE = "\033[0;34m";    // BLUE
         String RESET = "\033[0m";
