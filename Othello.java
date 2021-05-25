@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable.UnaryOp.Abs;
+
 // DIVISION OF LABOR
 // -- This will be mostly written by Cyril and Sophiathe
 public class Othello {
@@ -60,9 +62,12 @@ public class Othello {
 
     void move(int[] action) { // Cyril Sharma
         // advances the game state by the appropiate action, assuming the action is legal
+        int offset;
         for (int i = -1; i < 2; i++){
             for (int j = -1; j < 2; j++) {
-                flip_section(action[0], action[1], i, j);
+                offset = check_direction(action[0], action[1], i, j);
+                if (offset != 0)
+                    flip_section(action[0], action[1], action[0] + i * offset, action[1] + j * offset);
             }
         }
 
@@ -115,20 +120,28 @@ public class Othello {
     }
 
     
-    void flip_section(int row, int col, int delta_row, int delta_col) {
+    void flip_section(int row, int col, int final_row, int final_col) {
 
-        int offset = check_direction(row, col, delta_row, delta_col);
         int r = row;
         int c = col;
+        int delta_row;
+        int delta_col;
 
-        if (offset != 0) {
-            while (r != (row + offset * delta_row) || c != (col + offset * delta_col)) {
-                r += delta_row;
-                c += delta_col;
-                board[r][c] = player;
-            }
-        }
-        
+        if (row == final_row)
+            delta_row = 0;
+        else 
+            delta_row = Math.abs(final_row - row) / (final_row - row);
+
+        if (col == final_col)
+            delta_col = 0;
+        else 
+            delta_col = Math.abs(final_col - col) / (final_col - col);
+
+        while (r != final_row || c != final_col) {
+            r += delta_row;
+            c += delta_col;
+            board[r][c] = player;
+        } 
     }
 
     void traverse(int step) { //Sophia Lu
@@ -157,7 +170,6 @@ public class Othello {
             for (int i = -1; i < 2; i++){
                 for (int j = -1; j < 2; j++) {
                     offset = check_direction(action[0], action[1], i, j);
-                    System.out.println("Offset: " + offset);
                     if (offset != 0)
                         valid = true;
                 }
