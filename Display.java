@@ -36,9 +36,17 @@ public class Display extends JLabel {
   }
 
   public void paintComponent(Graphics g) {
-    buffer.clearRect(0, 0, (int) getWidth(), (int) getHeight());
+    // Draw board
+    buffer.setColor(Color.BLACK);
+    buffer.fillRect(0, 0, (int) getWidth(), (int) getHeight());
     imgData = ImageDrawer.drawScaledImage(icon.getImage(), this, buffer);
     drawBoardToBuffer();
+
+    // draw background
+    g.setColor(Color.BLACK);
+    g.fillRect(0, 0, (int) getWidth(), (int) getHeight());
+
+    // paste board onto background
     g.drawImage(myImage, 0, 0, icon.getImage().getWidth(null), icon.getImage().getHeight(null), null);
   }
 
@@ -62,7 +70,6 @@ public class Display extends JLabel {
     }
 
     if (current_action != null) {
-      System.out.println("Current action is now displayed.");
       p = new Piece(current_action[0] * boxSize + imgData.get_x1() + offset, current_action[1] * boxSize + imgData.get_y1() + offset, 0.75 * boxSize, 0);
       p.draw(buffer);
     }
@@ -88,7 +95,6 @@ public class Display extends JLabel {
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
-    System.out.println("Current " + current);
 
     if (moved || !current)
       return;
@@ -125,17 +131,9 @@ public class Display extends JLabel {
       Point coord = e.getPoint();
       double x = coord.getX();
       double y = coord.getY();
-      System.out.println("x: " + x);
-      System.out.println("y: " + y);
-      System.out.println("x1: " + imgData.get_x1());
-      System.out.println("y1: " + imgData.get_y1());
-      System.out.println("x2: " + imgData.get_x2());
-      System.out.println("y2: " + imgData.get_y2());
       int boxSize = (imgData.get_x2() - imgData.get_x1()) / 8;
       int xCoord = ((int) x - imgData.get_x1()) / boxSize;
       int yCoord = ((int) y - imgData.get_y1()) / boxSize;
-      System.out.println("xCoord: " + xCoord);
-      System.out.println("yCoord: " + yCoord);
       int[] action = {xCoord, yCoord};
       if (game.legal(action))
         move(action);

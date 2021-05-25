@@ -155,19 +155,16 @@ public class Othello {
 
     void traverse(int step) { //Sophia Lu
         // advances the display through history by a certain step_size
-        System.out.println("Time: " + time);
         int length = game_history.size();
         if ((time + step) >= 0 & (time + step) < length) {
             time += step;  
             player *= -1;
-            System.out.println("time " + time);
         }
     }
 
 
     boolean legal(int[] action) { // Cyril Sharma
         int[][] board = game_history.get(game_history.size() - 1);
-        display();
         // checks if an action is legal
         boolean valid = false;
         int offset;
