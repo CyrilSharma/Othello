@@ -27,7 +27,7 @@ public class Othello {
         }
     }
 
-    boolean is_over() { // Raka Adakroy
+    boolean is_over() { // need to be upgraded
         // determines whether the game is over or not
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -65,6 +65,7 @@ public class Othello {
                 flip_section(action[0], action[1], i, j);
             }
         }
+
         board[action[0]][action[1]] = player;
         player *= -1;
 
@@ -73,42 +74,61 @@ public class Othello {
         return;
     }
 
-    void flip_section(int row, int col, int delta_row, int delta_col) {
+    // returns othe amount in the specified direction the enclosing piece is
+    int check_direction(int row, int col, int delta_row, int delta_col) {
         int current_row = row + delta_row;
         int current_col = col + delta_col;
+        int counter = 1;
         
         // make sure path isn't on the edge
         if (current_col == board.length || current_col == -1)
-            return;
+            return 0;
         else if (current_row == board.length || current_row == -1)
-            return;
+            return 0;
 
         if (board[current_row][current_col] != player * -1)
-            return;
+            return 0;
         else {
             // tracks if consecutive pieces have the same color
             boolean matches = true;
             while (matches) {
                 current_row += delta_row;
                 current_col += delta_col;
+                counter += 1;
 
                 if (current_col == board.length || current_col == -1)
-                    return;
+                    return 0;
                 else if (current_row == board.length || current_row == -1)
-                    return;
+                    return 0;
                 else
+                    // if player's tokens do not surround opponenets, match was not found.
                     matches = board[current_row][current_col] == player * -1;
             }
+
             // if the player encloses the opponents pieces with this move
             if (board[current_row][current_col] == player) {
-                // flip the appropiate pieces
-                while (!(row == current_row & col == current_col)) {
-                    row += delta_row;
-                    col += delta_col;
-                    board[row][col] = player;
-                }
+                return counter;
+            }
+            else 
+                return 0;
+        }
+    }
+
+    
+    void flip_section(int row, int col, int delta_row, int delta_col) {
+
+        int offset = check_direction(row, col, delta_row, delta_col);
+        int r = row;
+        int c = col;
+
+        if (offset != 0) {
+            while (r != (row + offset * delta_row) || c != (col + offset * delta_col)) {
+                r += delta_row;
+                c += delta_col;
+                board[r][c] = player;
             }
         }
+        
     }
 
     void traverse(int step) { //Sophia Lu
@@ -131,10 +151,20 @@ public class Othello {
 
     boolean legal(int[] action) { // Cyril Sharma
         // checks if an action is legal
-        if (board[action[0]][action[1]] != 0)
-            return false;
-        else
-            return true;
+        boolean valid = false;
+        int offset;
+        if (board[action[0]][action[1]] == 0) {
+            for (int i = -1; i < 2; i++){
+                for (int j = -1; j < 2; j++) {
+                    offset = check_direction(action[0], action[1], i, j);
+                    System.out.println("Offset: " + offset);
+                    if (offset != 0)
+                        valid = true;
+                }
+            }
+        }
+        
+        return valid;
     }
 
     // accessor method for board state

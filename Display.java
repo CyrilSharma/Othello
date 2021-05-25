@@ -115,7 +115,8 @@ public class Display extends JLabel {
       System.out.println("xCoord: " + xCoord);
       System.out.println("yCoord: " + yCoord);
       int[] action = {xCoord, yCoord};
-      move(action);
+      if (game.legal(action))
+        move(action);
     }
 
     public void mouseReleased(MouseEvent e) {
