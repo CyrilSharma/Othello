@@ -138,8 +138,13 @@ public class Othello {
     }
 
     // accessor method for board state
-    int state(int i, int j) {
+    int getState(int i, int j) {
         return board[i][j];
+    }
+    
+    int setDefaultState(int i, int j)   {
+      board[i][j] = (((i + j) % 2) * 2) - 1;
+      return board[i][j];
     }
 
     void display() {

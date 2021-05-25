@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import javax.swing.JOptionPane;
 
 import javax.imageio.ImageIO;
 public class GamePanel extends JPanel
@@ -25,9 +26,15 @@ public class GamePanel extends JPanel
    {
       // get tournament size from user then set number of torunament rounds to that number
       // using 1 as a dummy value
-      tournament = new Tournament(1);
+           
+      TitlePanel titlePanel = new TitlePanel();
+      titlePanel.setLayout(new FlowLayout());
+      add(titlePanel);
 
-      setLayout(new GridBagLayout());
+      int num_of_rounds = Integer.parseInt(JOptionPane.showInputDialog("How many rounds would you like to play?"));
+
+      tournament = new Tournament(num_of_rounds);
+      /*setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
 
       display = new Display("othello.jpg");
@@ -43,7 +50,7 @@ public class GamePanel extends JPanel
 
       display.setPreferredSize(new Dimension(1000, 1000));
 
-      add(display, c);
+      add(display, c);  */
 
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
@@ -59,7 +66,11 @@ public class GamePanel extends JPanel
       JButton move = new JButton("Move");
       move.addActionListener(new MoveListener());
       subpanel.add(move);
-
+      
+      JButton reset = new JButton("Reset");
+      reset.addActionListener(new ResetListener());
+      subpanel.add(reset);
+/*
       c.fill = GridBagConstraints.HORIZONTAL;
       c.anchor = GridBagConstraints.CENTER;
       c.ipady = 0;
@@ -71,15 +82,14 @@ public class GamePanel extends JPanel
 
 
       add(subpanel, c);
-      
-      //tournament = new Tournament(1);
+ */     
    }
    private class ForwardButtonListener implements ActionListener // Cyril Sharma
    {
       // This will advance the game state by one move when the button is clicked, but will only advance the gamestate to previous moves
       public void actionPerformed(ActionEvent e)
       {
-         board.traverse(1);
+    //     .traverse(1);
          return;
       }
    }
@@ -88,7 +98,7 @@ public class GamePanel extends JPanel
       // This will regress the game state by one move when the button is clicked
       public void actionPerformed(ActionEvent e)
       {
-         board.traverse(-1);
+       //  board.traverse(-1);
          return;
       }
    }
@@ -100,6 +110,16 @@ public class GamePanel extends JPanel
       {
     //     display.move();
             return;
+      }
+   }
+   
+      private class ResetListener implements ActionListener
+   {
+      // This will play a new move, the difference between this and ForwardButtonListener is it will not advance the state to a previously explored state, it only advances the state to a new state.
+      public void actionPerformed(ActionEvent e)
+      {
+         (tourney.get(1)).reset();
+         return;
       }
    }
 }
