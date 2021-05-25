@@ -39,7 +39,7 @@ public class TitlePanel extends JPanel
         // This will initiate the game when the start button is clicked
         public void actionPerformed(ActionEvent e)
         {
-            getParent().dispatchEvent(e);
+            main.start();
         }
     }
 

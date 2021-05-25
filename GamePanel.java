@@ -18,7 +18,7 @@ public class GamePanel extends JPanel
     * title: the title of the game
     */
 
-   private JLabel display;
+   private Display display;
    private Tournament tournament;
    private JLabel title;
 
@@ -31,10 +31,16 @@ public class GamePanel extends JPanel
       titlePanel.setLayout(new FlowLayout());
       add(titlePanel);
 
+<<<<<<< HEAD
       int num_of_rounds = Integer.parseInt(JOptionPane.showInputDialog("How many rounds would you like to play?"));
 
       tournament = new Tournament(num_of_rounds);
       /*setLayout(new GridBagLayout());
+=======
+      // setPreferredSize(new Dimension(400, 400));
+
+      setLayout(new GridBagLayout());
+>>>>>>> cc740918b78779c361359bf74867eb2257665990
       GridBagConstraints c = new GridBagConstraints();
 
       display = new Display("othello.jpg");
@@ -48,9 +54,13 @@ public class GamePanel extends JPanel
       c.gridx = 0;
       c.gridy = 0;
 
+<<<<<<< HEAD
       display.setPreferredSize(new Dimension(1000, 1000));
 
       add(display, c);  */
+=======
+      add(display, c);
+>>>>>>> cc740918b78779c361359bf74867eb2257665990
 
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
@@ -89,7 +99,11 @@ public class GamePanel extends JPanel
       // This will advance the game state by one move when the button is clicked, but will only advance the gamestate to previous moves
       public void actionPerformed(ActionEvent e)
       {
+<<<<<<< HEAD
     //     .traverse(1);
+=======
+         display.traverse(1);
+>>>>>>> cc740918b78779c361359bf74867eb2257665990
          return;
       }
    }
@@ -98,7 +112,11 @@ public class GamePanel extends JPanel
       // This will regress the game state by one move when the button is clicked
       public void actionPerformed(ActionEvent e)
       {
+<<<<<<< HEAD
        //  board.traverse(-1);
+=======
+         display.traverse(-1);
+>>>>>>> cc740918b78779c361359bf74867eb2257665990
          return;
       }
    }
@@ -108,8 +126,7 @@ public class GamePanel extends JPanel
       // This will play a new move, the difference between this and ForwardButtonListener is it will not advance the state to a previously explored state, it only advances the state to a new state.
       public void actionPerformed(ActionEvent e)
       {
-    //     display.move();
-            return;
+         display.finalize_move();
       }
    }
    

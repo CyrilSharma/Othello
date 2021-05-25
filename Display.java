@@ -18,6 +18,9 @@ public class Display extends JLabel {
   private Othello game;
   private ImageIcon icon;
   private ImageManager imgData;
+  private boolean moved = false;
+  private boolean current = true;
+  private int[] current_action = null;
 
   public Display(String imgpath) {
     game = new Othello();
@@ -33,9 +36,17 @@ public class Display extends JLabel {
   }
 
   public void paintComponent(Graphics g) {
-    buffer.clearRect(0, 0, (int) getWidth(), (int) getHeight());
+    // Draw board
+    buffer.setColor(Color.BLACK);
+    buffer.fillRect(0, 0, (int) getWidth(), (int) getHeight());
     imgData = ImageDrawer.drawScaledImage(icon.getImage(), this, buffer);
     drawBoardToBuffer();
+
+    // draw background
+    g.setColor(Color.BLACK);
+    g.fillRect(0, 0, (int) getWidth(), (int) getHeight());
+
+    // paste board onto background
     g.drawImage(myImage, 0, 0, icon.getImage().getWidth(null), icon.getImage().getHeight(null), null);
   }
 
@@ -57,32 +68,58 @@ public class Display extends JLabel {
         }
       }
     }
+
+    if (current_action != null) {
+      p = new Piece(current_action[0] * boxSize + imgData.get_x1() + offset, current_action[1] * boxSize + imgData.get_y1() + offset, 0.75 * boxSize, 0);
+      p.draw(buffer);
+    }
   }
+
+  public void traverse(int step) {
+    // i.e if the player wants to retract a move they considered.
+    if (step == -1 & moved == true) {
+      current_action = null;
+      game.unmove();
+      moved = false;
+    }
+    else if (moved == false) {
+      game.traverse(step);
+
+      // if the game is at its latest position, set this value to true.
+      current = game.current();
+    }
+
+    repaint();
+  }
+
 
   public void move(int[] action) { // Cyril Sharma
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
 
-    if (game.legal(action))
+    if (moved || !current)
+      return;
+
+    if (game.legal(action)) {
       game.move(action);
+      current_action = action;
+      moved = true;
+    }
 
-    int state;
-    int offset = (imgData.get_x2() - imgData.get_x1()) / 16;
-    int boxSize = offset * 2;
-
+<<<<<<< HEAD
     Piece p;
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
         state = game.getState(i, j);
+=======
+    repaint();
+  }
+>>>>>>> cc740918b78779c361359bf74867eb2257665990
 
-        if (state != 0) {
-          p = new Piece(i * boxSize + imgData.get_x1() + offset, j * boxSize + imgData.get_y1() + offset, 
-          0.75 * boxSize, state);
-          p.draw(buffer);
-        }
-      }
-    }
+  public void finalize_move() {
+    moved = false;
+    current_action = null;
     repaint();
   }
 
@@ -108,19 +145,12 @@ public class Display extends JLabel {
       Point coord = e.getPoint();
       double x = coord.getX();
       double y = coord.getY();
-      System.out.println("x: " + x);
-      System.out.println("y: " + y);
-      System.out.println("x1: " + imgData.get_x1());
-      System.out.println("y1: " + imgData.get_y1());
-      System.out.println("x2: " + imgData.get_x2());
-      System.out.println("y2: " + imgData.get_y2());
       int boxSize = (imgData.get_x2() - imgData.get_x1()) / 8;
       int xCoord = ((int) x - imgData.get_x1()) / boxSize;
       int yCoord = ((int) y - imgData.get_y1()) / boxSize;
-      System.out.println("xCoord: " + xCoord);
-      System.out.println("yCoord: " + yCoord);
       int[] action = {xCoord, yCoord};
-      move(action);
+      if (game.legal(action))
+        move(action);
     }
 
     public void mouseReleased(MouseEvent e) {
