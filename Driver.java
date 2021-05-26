@@ -6,7 +6,7 @@ public class Driver {
    {
       JFrame frame = new JFrame("Othello");
 
-      frame.setSize(500, 500);
+      frame.setSize(500, 550);
       frame.setLocation(200, 100);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setContentPane(new GamePanel());
