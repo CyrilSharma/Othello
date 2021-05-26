@@ -97,7 +97,7 @@ public class Display extends JLabel {
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
-    int state;
+
     if (moved || !current)
       return;
 
@@ -107,25 +107,19 @@ public class Display extends JLabel {
       moved = true;
     }
 
-    Piece p;
-    for (int i = 0; i < 8; i++) {
-      for (int j = 0; j < 8; j++) {
-        state = game.state(i, j);
-        }
     repaint();
   }
-}
+
   public void finalize_move() {
     moved = false;
     current_action = null;
     repaint();
   }
 
-  public void reset() { // Sophia Lu
+  private void reset() { // Sophia Lu
     // when the game is over, call this method if the player wishes to proceed to a
     // new game
-    game = game.setDefaultState();
-    return;
+    game.reset();   
   }
 
   private class ClickListener implements MouseListener // Cyril Sharma
