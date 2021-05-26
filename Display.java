@@ -97,7 +97,7 @@ public class Display extends JLabel {
     // Advances the internal game state, and updates the display
     // Also in charge of determining if move is legal
     // TBD: might probably trigger a pop-up to confirm the move
-
+    int state;
     if (moved || !current)
       return;
 
@@ -110,7 +110,7 @@ public class Display extends JLabel {
     Piece p;
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
-        state = game.getState(i, j);
+        state = game.state(i, j);
         }
     repaint();
   }
@@ -121,14 +121,10 @@ public class Display extends JLabel {
     repaint();
   }
 
-  private void reset() { // Sophia Lu
+  public void reset() { // Sophia Lu
     // when the game is over, call this method if the player wishes to proceed to a
     // new game
-    for (int i = 3; i < 5; i++){
-            for (int j = 3; j < 5; j++) {
-                game.setDefaultState(i, j);   
-            }
-        }
+    game = game.setDefaultState();
     return;
   }
 
