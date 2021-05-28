@@ -1,4 +1,4 @@
-package slu;
+
 import java.util.ArrayList;
 
 // DIVISION OF LABOR

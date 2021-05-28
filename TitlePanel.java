@@ -41,6 +41,8 @@ public class TitlePanel extends JPanel
         // This will initiate the game when the start button is clicked
         public void actionPerformed(ActionEvent e)
         {
+//        	subpanel.setVisible(false);
+//        	title.setVisible(false);
         	JComponent comp = (JComponent) e.getSource();
         	comp.getParent().getParent().setVisible(false);
         	

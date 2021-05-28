@@ -46,7 +46,7 @@ public class GamePanel extends JPanel
       setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
       
-      display = new Display("othello.jpg");
+      display = new Display(gameIndex);
 
       c.fill = GridBagConstraints.BOTH;
       c.anchor = GridBagConstraints.NORTHWEST;
