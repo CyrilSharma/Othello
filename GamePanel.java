@@ -62,9 +62,12 @@ public class GamePanel extends JPanel
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
 
+<<<<<<< HEAD
 //      JButton start = new JButton("Start");
 //      start.addActionListener(new StartListener());
 //      subpanel.add(start);
+=======
+>>>>>>> bc81adaaa1c9b5dc68885edf35a407075ddbd24f
       
       JButton backward = new JButton("<-");
       backward.addActionListener(new BackButtonListener());
