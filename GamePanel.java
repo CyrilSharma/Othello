@@ -46,7 +46,7 @@ public class GamePanel extends JPanel
       setLayout(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
       
-      display = new Display(gameIndex);
+      display = new Display("othello.jpg");
 
       c.fill = GridBagConstraints.BOTH;
       c.anchor = GridBagConstraints.NORTHWEST;
@@ -62,9 +62,6 @@ public class GamePanel extends JPanel
       JPanel subpanel = new JPanel();
       subpanel.setLayout(new FlowLayout());
 
-//      JButton start = new JButton("Start");
-//      start.addActionListener(new StartListener());
-//      subpanel.add(start);
       
       JButton backward = new JButton("<-");
       backward.addActionListener(new BackButtonListener());
