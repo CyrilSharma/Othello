@@ -1,7 +1,12 @@
+package slu;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 public class Display extends JLabel {
   /**
    * This class displays only the board, it does not display any of the interface
@@ -22,9 +27,15 @@ public class Display extends JLabel {
   private boolean current = true;
   private int[] current_action = null;
 
-  public Display(String imgpath) {
+  public Display(int gameIndex) throws IOException {
     game = new Othello();
-    icon = new ImageIcon(imgpath);
+    //icon = new ImageIcon( );
+    
+    Image img = ImageIO.read(new File("C:\\Sophia\\Test\\src\\slu\\othello.jpg"));   
+    icon = new ImageIcon(img);
+    
+    int w = icon.getIconWidth();
+    int h = icon.getIconHeight();
 
     myImage = new BufferedImage(
     icon.getIconWidth(),
@@ -33,6 +44,8 @@ public class Display extends JLabel {
 
     buffer = myImage.getGraphics();
     addMouseListener(new ClickListener());
+    
+    repaint();
   }
 
   public void paintComponent(Graphics g) {
@@ -115,18 +128,30 @@ public class Display extends JLabel {
     current_action = null;
     repaint();
   }
+  
+  
+  public boolean isOver() {
+	  
+	  return game.is_over();
+  }
 
-  private void reset() { // Sophia Lu
+  
+  public int[] getScore() {	  
+	  return game.score();	  
+  }
+  
+  
+  public void reset() { // Sophia Lu
     // when the game is over, call this method if the player wishes to proceed to a
     // new game
-    game.reset();   
+    game.setDefaultState();   
   }
 
   private class ClickListener implements MouseListener // Cyril Sharma
   {
     // This will call the move method whenever a square is clicked
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {    	
     }
 
     public void mousePressed(MouseEvent e) {
@@ -139,6 +164,8 @@ public class Display extends JLabel {
       int[] action = {xCoord, yCoord};
       if (game.legal(action))
         move(action);
+      
+      repaint();
     }
 
     public void mouseReleased(MouseEvent e) {

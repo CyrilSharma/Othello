@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -14,13 +15,14 @@ public class TitlePanel extends JPanel
      */
 
     private JLabel title = new JLabel("Othello");
+    JPanel subpanel;
 
     public TitlePanel() { //Raka Adakroy
         setLayout(new BorderLayout());
         title.setFont(new Font("Time", Font.PLAIN, 16));
         add(title, BorderLayout.CENTER);
 
-        JPanel subpanel = new JPanel();
+        subpanel = new JPanel();
         subpanel.setLayout(new FlowLayout());
 
         JButton start = new JButton("Start");
@@ -39,7 +41,9 @@ public class TitlePanel extends JPanel
         // This will initiate the game when the start button is clicked
         public void actionPerformed(ActionEvent e)
         {
-            main.start();
+        	JComponent comp = (JComponent) e.getSource();
+        	comp.getParent().getParent().setVisible(false);
+        	
         }
     }
 
