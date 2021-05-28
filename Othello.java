@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 // DIVISION OF LABOR
@@ -190,9 +191,15 @@ public class Othello {
     }
 
     // accessor method for board state
-    public int getState(int i, int j) {
-        return game_history.get(time)[i][j];
-    }
+
+    int getState(int i, int j) {
+    	int[][] board = game_history.get(game_history.size() - 1);
+    	return board[i][j];
+        //return 1;
+}
+//    public int state(int i, int j) {
+  //      return 1;
+    //}
 
     // determines if board is at some point in the past, or at the current move.
     public boolean current() {
@@ -200,13 +207,15 @@ public class Othello {
 
     }
     
-    public void reset()   {
-      for (int i = game_history.size() - 1; i > 0; i++) {
-          game_history.remove(i);
-      }
-
-      time = 0;
-      player = 1;
+    int[][] setDefaultState()   {
+      int[][] board = new int[8][8];
+        for (int i = 3; i < 5; i++){
+            for (int j = 3; j < 5; j++) {
+                // generate a checkerboard pattern (1 being white, -1 being blue)
+                board[i][j] = (((i + j) % 2) * 2) - 1;
+            }
+        }
+        return board;
     }
 
     void display() {
