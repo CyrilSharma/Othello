@@ -27,19 +27,10 @@ public class Display extends JLabel {
   private boolean current = true;
   private int[] current_action = null;
 
-<<<<<<< HEAD
 public Display(String imgpath) {
-=======
-  public Display(int gameIndex) throws IOException {
->>>>>>> bc81adaaa1c9b5dc68885edf35a407075ddbd24f
+
     game = new Othello();
-    //icon = new ImageIcon( );
-    
-    Image img = ImageIO.read(new File("C:\\Sophia\\Test\\src\\slu\\othello.jpg"));   
-    icon = new ImageIcon(img);
-    
-    int w = icon.getIconWidth();
-    int h = icon.getIconHeight();
+    icon = new ImageIcon(imgpath);
 
     myImage = new BufferedImage(
     icon.getIconWidth(),
@@ -48,8 +39,6 @@ public Display(String imgpath) {
 
     buffer = myImage.getGraphics();
     addMouseListener(new ClickListener());
-    
-    repaint();
   }
 
   public void paintComponent(Graphics g) {

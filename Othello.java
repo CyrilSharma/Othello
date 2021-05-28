@@ -197,21 +197,6 @@ public class Othello {
     	return board[i][j];
         //return 1;
 }
-<<<<<<< HEAD
-//    public int state(int i, int j) {
-  //      return 1;
- //   }
-=======
-<<<<<<< HEAD
-    public int state(int i, int j) {
-        return 1;
-    }
-=======
-//    public int state(int i, int j) {
-  //      return 1;
-    //}
->>>>>>> 79ca574464204b851175e080ddb8f68ec359b6be
->>>>>>> bc81adaaa1c9b5dc68885edf35a407075ddbd24f
 
     // determines if board is at some point in the past, or at the current move.
     public boolean current() {
