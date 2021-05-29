@@ -17,6 +17,7 @@ public class Othello {
     // Board is 8 by 8
     private ArrayList<int[][]> game_history = new ArrayList<int[][]>();
     private int player = 1;
+    private boolean passed = false;
     private int time = 0;
 
     public Othello() {
@@ -32,16 +33,39 @@ public class Othello {
 
     boolean is_over() { // need to be upgraded
         // determines whether the game is over or not
+        int[][] board = game_history.get(game_history.size() - 1);
+        boolean empty_squares = false;
+        boolean legal_moves = false;
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                int[] loc = {i, j};
-                if (legal(loc)) {
-                    return false;
-                }
+          for (int j = 0; j < 8; j++) {
+            int[] action = {i, j};
+            if (legal(action)) {
+                legal_moves = true;
+                if (board[i][j] == 0)
+                    empty_squares = true;
+
             }
+          }
+        }
+    
+        if (!legal_moves && passed == false) {
+          passed = true;
+          player *= -1;
+          boolean game_over = is_over();
+          passed = false;
+          player *= -1;
+          return game_over;
+        }
+        else if (!legal_moves && passed) {
+          return true;
         }
 
-        return true;
+        else if (!empty_squares)
+            return true;
+
+        else {
+            return false;
+        }
     }
 
     int[] score() { // Raka Adakroy

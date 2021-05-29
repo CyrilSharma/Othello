@@ -123,7 +123,6 @@ public Display(String imgpath) {
   
   
   public boolean isOver() {
-	  
 	  return game.is_over();
   }
 

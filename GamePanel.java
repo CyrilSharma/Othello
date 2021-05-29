@@ -118,27 +118,22 @@ public class GamePanel extends JPanel
       public void actionPerformed(ActionEvent e)
       {
          display.finalize_move();         
-         tournament.setScore(gameIndex,display.getScore()); 
+         tournament.setScore(gameIndex, display.getScore()); 
          
          if (display.isOver())
          {
-        	 gameIndex ++;
-        	 
-        	 if (gameIndex == gameIndex)
-        	 {
-        		 int winnerPlayer = tournament.getWinner();        		 
-        		 
-        		 if (winnerPlayer == 1)
-        			 showMessageDialog(null, "Player 1 is the winner");
-        		 
-        		 if (winnerPlayer == 2)
-        			 showMessageDialog(null, "Player 2 is the winner");
-        		 else        		 
-        			 showMessageDialog(null, "No winner");
-        		 
-        	 }
-
-        		 display.reset("othello.jpg");
+        	   gameIndex ++;
+            int winnerPlayer = tournament.getWinner();        		 
+            
+            if (winnerPlayer == 1)
+               showMessageDialog(null, "Player 1 is the winner");
+            
+            if (winnerPlayer == 2)
+               showMessageDialog(null, "Player 2 is the winner");
+            else        		 
+               showMessageDialog(null, "No winner");
+            
+            display.reset("othello.jpg");
          }
       }
    }
