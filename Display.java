@@ -154,10 +154,13 @@ public Display(String imgpath) {
       int boxSize = (imgData.get_x2() - imgData.get_x1()) / 8;
       int xCoord = ((int) x - imgData.get_x1()) / boxSize;
       int yCoord = ((int) y - imgData.get_y1()) / boxSize;
-      int[] action = {xCoord, yCoord};
-      if (game.legal(action))
-        move(action);
-      
+      if (xCoord >= 0 && xCoord < 8) {
+        if (yCoord >= 0 && yCoord < 8) {
+          int[] action = {xCoord, yCoord};
+          if (game.legal(action))
+            move(action);
+        }
+      }
       repaint();
     }
 
