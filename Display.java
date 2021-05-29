@@ -83,14 +83,15 @@ public Display(String imgpath) {
 
   public void traverse(int step) {
     // i.e if the player wants to retract a move they considered.
+    System.out.println("hi");
     if (step == -1 & moved == true) {
       current_action = null;
       game.unmove();
       moved = false;
     }
     else if (moved == false) {
+      System.out.println("meep");
       game.traverse(step);
-
       // if the game is at its latest position, set this value to true.
       current = game.current();
     }

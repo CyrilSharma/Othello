@@ -193,10 +193,9 @@ public class Othello {
     // accessor method for board state
 
     int getState(int i, int j) {
-    	int[][] board = game_history.get(game_history.size() - 1);
-    	return board[i][j];
-        //return 1;
-}
+        int[][] board = game_history.get(time);
+        return board[i][j];
+    }
 
     // determines if board is at some point in the past, or at the current move.
     public boolean current() {
