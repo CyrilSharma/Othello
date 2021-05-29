@@ -138,7 +138,8 @@ public Display(String imgpath) {
   public void reset(String imgpath) { // Sophia Lu
     // when the game is over, call this method if the player wishes to proceed to a
     // new game
-    //game.setDefaultState();
+    moved = false;
+    current_action = null;
     game = new Othello();
     icon = new ImageIcon(imgpath);
 
