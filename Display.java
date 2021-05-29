@@ -135,10 +135,20 @@ public Display(String imgpath) {
   }
   
   
-  public void reset() { // Sophia Lu
+  public void reset(String imgpath) { // Sophia Lu
     // when the game is over, call this method if the player wishes to proceed to a
     // new game
-    game.setDefaultState();   
+    //game.setDefaultState();
+    game = new Othello();
+    icon = new ImageIcon(imgpath);
+
+    myImage = new BufferedImage(
+    icon.getIconWidth(),
+    icon.getIconHeight(),
+    BufferedImage.TYPE_INT_RGB);
+
+    buffer = myImage.getGraphics();
+    repaint();       
   }
 
   private class ClickListener implements MouseListener // Cyril Sharma
