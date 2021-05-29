@@ -130,8 +130,6 @@ public class GamePanel extends JPanel
             
             if (winnerPlayer == 2)
                showMessageDialog(null, "Player 2 is the winner");
-            else        		 
-               showMessageDialog(null, "No winner");
             
             display.reset("othello.jpg");
          }
